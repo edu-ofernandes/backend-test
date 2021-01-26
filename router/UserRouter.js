@@ -3,11 +3,10 @@ const UserCtrl = require('../controller/UserCtrl')
 
 const router = express.Router()
 
+router.get('/users', UserCtrl.allUsers)
+router.get('/users/:id', UserCtrl.searchUserId)
+router.delete('/users/me', UserCtrl.deleteUserMe)
 router.post('/users', UserCtrl.newUser)
-
-/* rout.get('/user', (req, res)=>{return res.json({name:"edu", age: 20})})
-rout.get('/user', (req, res)=>{return res.json({name:"edu", age: 20})})
-rout.get('/user', (req, res)=>{return res.json({name:"edu", age: 20})})
-*/
+router.post('/login', UserCtrl.loginUser)
 
 module.exports = router

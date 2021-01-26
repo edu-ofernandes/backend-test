@@ -19,5 +19,4 @@ module.exports = sequelize.define('users', {
     type: DataTypes.STRING,
     allowNull: false
   }
-
 })
