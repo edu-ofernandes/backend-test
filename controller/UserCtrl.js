@@ -10,7 +10,7 @@ const newUser = async (req, res) => {
 
   if (!UserValid.valid) return res.json({ message: UserValid.log, statusCode: UserValid.satusCode })
 
-  if (await userExists(email) > 0) return res.json({ message: 'Usuário já existe', statusCode: 409 })
+  if (await userExistsByEmail(email) > 0) return res.json({ message: 'Usuário já existe', statusCode: 409 })
 
   const user = await UserModel.create({ displayName, email, password, image })
 
@@ -89,8 +89,11 @@ const loginUser = async (req, res) => {
   return res.json({ token, statusCode: UserValid.statusCode })
 }
 
-const userExists = async (email) => {
+const userExistsByEmail = async (email) => {
   return await UserModel.count({ where: { email } })
+}
+const userExistsById = async (id) => {
+  return await UserModel.count({ where: { id } })
 }
 
 module.exports = {
@@ -98,5 +101,7 @@ module.exports = {
   allUsers,
   deleteUserMe,
   searchUserId,
-  loginUser
+  loginUser,
+  userExistsByEmail,
+  userExistsById
 }

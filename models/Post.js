@@ -1,7 +1,7 @@
 const sequelize = require('../database/Conn')
 const { DataTypes } = require('sequelize')
-
-module.exports = sequelize.define('posts', {
+const UserModel = require('./User')
+const Post = sequelize.define('posts', {
   title: {
     type: DataTypes.STRING,
     allowNull: false
@@ -18,3 +18,6 @@ module.exports = sequelize.define('posts', {
     onDelete: 'CASCADE'
   }
 })
+Post.belongsTo(UserModel, { foreignKey: 'userId', as: 'user' })
+UserModel.hasMany(Post, { foreignKey: 'userId', as: 'user' })
+module.exports = Post

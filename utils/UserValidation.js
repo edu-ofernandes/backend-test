@@ -48,7 +48,6 @@ const userLoginValidation = (User) => {
 
 const jwtValidation = (token) => {
   if (!validator.isJWT(token)) {
-    console.log(token)
     return { valid: false, log: 'token expirado ou inválido', statusCode: 401 }
   }
   return { valid: true, log: '', statusCode: 200 }
