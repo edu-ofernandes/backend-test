@@ -13,9 +13,8 @@ const postValidation = (Post) => {
 }
 
 const jwtValidation = (token) => {
-  if (!validator.isJWT(token)) {
-    return { valid: false, log: 'token expirado ou inválido', statusCode: 401 }
-  }
+  if (!validator.isJWT(token)) return { valid: false, log: 'token expirado ou inválido', statusCode: 401 }
+
   return { valid: true, log: '', statusCode: 200 }
 }
 

@@ -15,7 +15,7 @@ const Post = sequelize.define('posts', {
     allowNull: false,
     references: { model: 'users', key: 'id' },
     onUpdate: 'CASCADE',
-    onDelete: 'CASCADE'
+    onDelete: 'RESTRICT'
   }
 })
 Post.belongsTo(UserModel, { foreignKey: 'userId', as: 'user' })
