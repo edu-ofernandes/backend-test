@@ -1,8 +1,7 @@
-# backend-test
-API de Blogs 
+# API de Blogs 
 
 
-# instalação 
+## Instalação 
 
 ```
 $ npm install
