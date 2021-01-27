@@ -105,6 +105,7 @@ const updatePost = async (req, res) => {
 }
 
 const searchPostTerm = async (req, res) => {
+  console.log(req)
   // if (!req.headers.authorization) return res.status(401).json({ message: 'token não encontrado', statusCode: 401 })
 
   // const tokenValid = PostValidation.jwtValidation(req.headers.authorization)
@@ -117,6 +118,7 @@ const searchPostTerm = async (req, res) => {
 
   // return res.status().json({})
 }
+
 const deletePost = async (req, res) => {
   if (!req.headers.authorization) return res.status(401).json({ message: 'token não encontrado', statusCode: 401 })
 

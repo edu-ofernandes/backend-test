@@ -3,12 +3,19 @@ const UserValidation = require('../utils/UserValidation')
 const jwt = require('jsonwebtoken')
 const S_KEY = '123456'
 
+const userExistsByEmail = async (email) => {
+  return await UserModel.count({ where: { email } })
+}
+const userExistsById = async (id) => {
+  return await UserModel.count({ where: { id } })
+}
+
 const newUser = async (req, res) => {
   const { displayName, email, password, image } = req.body
 
   const UserValid = UserValidation.userValidation(req.body)
 
-  if (!UserValid.valid) return res.status(UserValid.satusCode).json({ message: UserValid.log, statusCode: UserValid.satusCode })
+  if (!UserValid.valid) return res.status(UserValid.statusCode).json({ message: UserValid.log, statusCode: UserValid.statusCode })
 
   if (await userExistsByEmail(email) > 0) return res.status(409).json({ message: 'Usuário já existe', statusCode: 409 })
 
@@ -16,7 +23,7 @@ const newUser = async (req, res) => {
 
   const token = jwt.sign({ userId: user.id }, S_KEY)
 
-  return res.status(UserValid.satusCode).json({ token, statusCode: UserValid.statusCode })
+  return res.status(UserValid.statusCode).json({ token, statusCode: UserValid.statusCode })
 }
 
 const allUsers = async (req, res) => {
@@ -81,13 +88,6 @@ const loginUser = async (req, res) => {
   const token = jwt.sign({ userId: userLogin.dataValues.id }, '123456')
 
   return res.status(200).json({ token, statusCode: UserValid.statusCode })
-}
-
-const userExistsByEmail = async (email) => {
-  return await UserModel.count({ where: { email } })
-}
-const userExistsById = async (id) => {
-  return await UserModel.count({ where: { id } })
 }
 
 module.exports = {
