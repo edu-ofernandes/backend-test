@@ -104,20 +104,20 @@ const updatePost = async (req, res) => {
   return res.status(200).json(dataUpdated)
 }
 
-const searchPostTerm = async (req, res) => {
+/* const searchPostTerm = async (req, res) => {
   console.log(req)
-  // if (!req.headers.authorization) return res.status(401).json({ message: 'token não encontrado', statusCode: 401 })
+  if (!req.headers.authorization) return res.status(401).json({ message: 'token não encontrado', statusCode: 401 })
 
-  // const tokenValid = PostValidation.jwtValidation(req.headers.authorization)
+  const tokenValid = PostValidation.jwtValidation(req.headers.authorization)
 
-  // if (!tokenValid.valid) return res.status(tokenValid.statusCode).json({ message: tokenValid.log, statusCode: tokenValid.statusCode })
+  if (!tokenValid.valid) return res.status(tokenValid.statusCode).json({ message: tokenValid.log, statusCode: tokenValid.statusCode })
 
-  // const tokenDecoded = jwt.verify(req.headers.authorization, S_KEY)
+  const tokenDecoded = jwt.verify(req.headers.authorization, S_KEY)
 
-  // if (UserCtrl.userExistsById(tokenDecoded.userId) > 0) return res.status(401).json({ message: 'token expirado ou inválido', statusCode: 401 })
+  if (UserCtrl.userExistsById(tokenDecoded.userId) > 0) return res.status(401).json({ message: 'token expirado ou inválido', statusCode: 401 })
 
-  // return res.status().json({})
-}
+  return res.status().json({})
+} */
 
 const deletePost = async (req, res) => {
   if (!req.headers.authorization) return res.status(401).json({ message: 'token não encontrado', statusCode: 401 })
@@ -148,6 +148,6 @@ module.exports = {
   allPosts,
   searchPostId,
   updatePost,
-  searchPostTerm,
+  // searchPostTerm,
   deletePost
 }

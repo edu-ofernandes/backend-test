@@ -16,7 +16,7 @@ app.post('/login', UserRouter)
 
 app.post('/post', PostRouter)
 app.get('/posts', PostRouter)
-app.get('/post/search?q=:searchTerm', PostRouter)
+// app.get('/post/search?q=:searchTerm', PostRouter)
 app.get('/post/:id', PostRouter)
 app.put('/post/:id', PostRouter)
 app.delete('/post/:id', PostRouter)
